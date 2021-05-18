@@ -1,22 +1,26 @@
 package com.pluralsight.blog;
 
 import com.pluralsight.blog.data.PostRepository;
+import com.pluralsight.blog.model.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.pluralsight.blog.data.PostRepository;
 
+import java.util.List;
+
 @Controller
 public class BlogController {
-    PostRepository postRepository = new PostRepository();
+    private PostRepository postRepository;
 
-    public class PostRepository {
-        PostRepository a = postRepository;
+    public BlogController(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     @RequestMapping("/")
-    public String listPosts(ModelMap modelMap){
-        modelMap.put("title", "Blog Post 1");
+    public String listPosts(ModelMap modelMap) {
+        List<Post> posts = postRepository.getAllPosts();
+        modelMap.put("posts", posts);
         return "home";
     }
 }
