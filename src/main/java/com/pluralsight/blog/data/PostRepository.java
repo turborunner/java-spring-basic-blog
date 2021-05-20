@@ -48,8 +48,19 @@ public class PostRepository {
     public List<Post> getAllPosts() {
         return ALL_POSTS;
     }
-
+    
     public Post findById(Long id) {
-        return null;
+        Post result = null;
+        for (Post item : ALL_POSTS) {
+            if(item.getId() == id){
+                result = item;
+                break;
+            }else{
+                result = null;
+                break;
+            }
+        }
+
+        return result;
     }
 }
