@@ -28,6 +28,6 @@ public class BlogController {
     public String postDetails(@PathVariable Long id, ModelMap modelMap){
         Post post = postRepository.findById(id); ;
         modelMap.put("post", post);
-        return "post=details";
+        return "post-details";
     }
 }
